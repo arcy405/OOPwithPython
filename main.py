@@ -28,6 +28,15 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         with open('items.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+        for item in items:
+            Item(
+                name = item.get('name'),
+                price = item.get('price'),
+                quantity = item.get('quantity'),
+            )
+
 
     def __repr__(self):
         return f"Archana('{self.name}, {self.price}, {self.quantity}')"
@@ -84,7 +93,10 @@ class Item:
 # item4 = Item("Mouse", 50, 5)
 # item5 = Item("Keyboard", 75, 5)
 
-print(Item.all)
+# print(Item.all)
+#
+# for item in Item.all:
+#     print(item.name)
 
-for item in Item.all:
-    print(item.name)
+Item.instantiate_from_csv()
+print(I)
